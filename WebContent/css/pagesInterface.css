@@ -1,0 +1,189 @@
+/* Page Header */
+.pageHeader {
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-radius: 6px 6px 0px 0px;
+	border-radius: 6px 6px 0px 0px;
+	color: #FFFFFF;
+ 
+	background:#009966; /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86add8',
+		endColorstr='#2585c1', GradientType=0); /* IE6-8 */
+}
+
+.pageHeaderTextH1Client {
+	font-family: Arial !important;
+	text-align: center;
+	font-weight: normal;
+	margin-left: 340px;
+	margin-top: 8px;
+	color: #FFFFFF;
+	width: 300px;
+	font-size: 20px;
+	float: left;
+}
+.pageHeaderTextH1Operator {
+	font-family: Arial !important;
+	text-align: center;
+	font-weight: normal;
+	margin-left: 350px;
+	margin-top: 8px;
+	width: 238px;
+	font-size: 20px;
+	float: left;
+}
+ 
+.clear {
+	clear: both;
+	padding: 3px;
+}
+
+.from-me {
+	position: relative;
+	padding: 10px 20px;
+	color: white;
+	background: #9999FF;
+	border-radius: 25px;
+	float: right; &: before { content : "";
+	position: absolute;
+	z-index: -1;
+	top: 2;
+	bottom: -2px;
+	right: -7px;
+	height: 20px;
+	border-right: 20px solid #0B93F6;
+	border-bottom-left-radius: 16px 14px;
+	-webkit-transform: translate(0, -2px);
+}
+
+&
+:after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	bottom: -2px;
+	right: -56px;
+	width: 26px;
+	height: 20px;
+	background: white;
+	border-bottom-left-radius: 10px;
+	-webkit-transform: translate(-30px, -2px);
+}
+
+}
+.from-them {
+	position: relative;
+	padding: 10px 20px;
+	background: #FFFFCC;
+	border-radius: 25px;
+	color: black;
+	float: left; &: before { content : "";
+	position: absolute;
+	z-index: 2;
+	bottom: -2px;
+	left: -7px;
+	height: 20px;
+	border-left: 20px solid #E5E5EA;
+	border-bottom-right-radius: 16px 14px;
+	-webkit-transform: translate(0, -2px);
+}
+
+&
+:after {
+	content: "";
+	position: absolute;
+	z-index: 3;
+	bottom: -2px;
+	left: 4px;
+	width: 26px;
+	height: 20px;
+	background: white;
+	border-bottom-right-radius: 10px;
+	-webkit-transform: translate(-30px, -2px);
+}
+
+}
+
+/* Video Down Box */
+#videoButtonBox {
+	width: 120px;
+	height: 25px;
+	margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin-top: 10px;
+}
+
+.btnVideoHide {
+	background: transparent url(../images/video-red.png) no-repeat;
+}
+
+.btnVideoShow {
+	background: transparent url(../images/video-green.png) no-repeat;
+}
+
+.btnAudioOn {
+	background: transparent url(../images/audio-green.png) no-repeat;
+}
+
+.btnAudioOff {
+	background: transparent url(../images/audio-red.png) no-repeat;
+}
+
+.btnCallStart {
+	background: transparent url(../images/callStart25.png) no-repeat;
+}
+
+.btnCallClose {
+	background: transparent url(../images/callClose25.png) no-repeat;
+}
+
+#btn_first .btn_center, #btn_prev .btn_center, #btn_next .btn_center,
+	#btn_last .btn_center {
+	padding: 3px 0 0 0 !important;
+	width: 12px;
+}
+
+#btnCallStartClose {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	margin-left: 0px;
+}
+
+#btnAudio {
+	position: absolute;
+	width: 20px;
+	height: 25px;
+	margin-left: 30px;
+	margin-top: 3px;
+}
+
+#btnVideo {
+	position: absolute;
+	width: 20px;
+	height: 25px;
+	margin-left: 55px;
+	margin-top: 3px;
+}
+
+#btnFullscreen {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	margin-left: 80px;
+	margin-top: 0px;
+	background: transparent url(../images/fullScreen.png) no-repeat;
+}
+
+#btnFullscreen:-moz-full-screen
+
+#videoSource {
+	width: 70%;
+	height: 360px;
+	margin-left: 0px;
+}

@@ -1,0 +1,74 @@
+#opPageHeader {
+	width: 1010px;
+	height: 55px;
+	margin-top:0px;
+	background:#009966;
+	margin-left: 180px; 
+}
+
+#opPageHeaderText {
+	margin-left: 380px;
+	margin-top: 8px;
+	width: 500px;
+	position: absolute;
+	font-size: 20px;
+}
+#btnMessageSend{
+	width: 50px;
+	height: 55px;
+	border-radius: 3px;
+	border: 1px solid #9999FF;
+}
+#opPageContainer {
+	width: 1210px;
+	margin-left: 180px;
+	float: left;
+	margin-top: 10px;
+	height: 740px;
+} 
+   
+#opPageMessageBook {
+	float: left; 
+	height: 520px;
+	width: 1010px;
+} 
+#opPageMessageBookHeader {
+	height: 30px;
+	width: 1000px;
+}
+
+#opPageMessageBookText {
+	margin-left: 100px;
+	font-size: 14px;
+	float: left;
+	position: absolute;
+}
+
+#messageBookContent {
+	height: 475px;
+	width: 1000px;
+	margin-top:0px;
+}
+ 
+ #sendMessageTextDisplay {
+	min-height: 475px;
+	max-width: 1000px;
+	height: 100%;
+	width: 100%;
+	background-color: #CCCCFF;
+}
+
+#sendMessageTextArea {
+	width: 600px;
+	height: 55px;
+	margin-left:135px;
+	border-radius: 3px;
+	border: 1px solid #9999FF;
+}
+
+#btnSend {
+	width: 30px;
+	margin-left: 240px;
+	height: 20px;
+}
+ 

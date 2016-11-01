@@ -1,0 +1,34 @@
+.operatorPageShow {
+	width: 1210px; 
+	height: 800px;
+	visibility: visible;
+	top:0;
+}
+
+.operatorPageHide {
+	visibility: hidden;
+	width: 0px;
+	height: 0px; 
+}
+
+.loginPageShow {
+	width: 1200px; 
+	height: 800px;
+	visibility: visible;
+}
+
+.loginPageHide {
+	visibility: hidden;
+	width: 0px;
+	height: 0px; 
+}
+.signupPageHide{
+	visibility: hidden;
+	width: 0px;
+	height: 0px; 
+}
+.signupPageShow{
+	width: 1200px; 
+	height: 800px;
+	visibility: visible;
+}

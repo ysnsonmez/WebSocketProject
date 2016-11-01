@@ -1,0 +1,254 @@
+<html>
+    <head>
+            <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+        <link rel="stylesheet" href='lib/bootstrap/css/bootstrap.min.css' />
+		<link rel="stylesheet" type="text/css" href='lib/jQuery/jquery-ui/blue-theme/jquery-ui.css' /> 
+		<link rel="stylesheet" type="text/css" href='css/loginPageLayout.css' />
+		<link rel="stylesheet" type="text/css" href='css/pagesInterface.css' />
+		<link rel="stylesheet" href='lib/bootstrap/css/bootstrap.min.css' />
+		<link rel="stylesheet" type="text/css" href='lib/jQuery/jquery-ui/blue-theme/jquery-ui.css' /> 
+		<link rel="stylesheet" type="text/css" href='css/clientPageLayout.css' />
+		<link rel="stylesheet" type="text/css" href='css/pagesInterface.css' /> 
+		<link rel="stylesheet" href='lib/bootstrap/css/bootstrap.min.css' />
+		<link rel="stylesheet" type="text/css" href='lib/jQuery/jquery-ui/blue-theme/jquery-ui.css' />
+		<link rel="stylesheet" type="text/css" href='css/operatorPageLayout.css' /> 
+		<link rel="stylesheet" type="text/css" href='css/hideShow.css' />
+		<link rel="stylesheet" type="text/css" href='css/pagesInterface.css' />
+ 
+        
+    </head>
+    
+<body style="background: #F2F2F2"> 
+	<meta charset="UTF-8">
+	<title> KARADENIZ TEKNIK UNIVERSITESI</title>
+		<script type="text/javascript">  
+				
+			document.addEventListener("DOMContentLoaded", function(event) {
+				loginPage.className="loginPageShow";
+				opPage.className="operatorPageHide";   
+				signupPage.className="signupPageHide";  
+			});
+			
+			var websocket = new WebSocket("ws://localhost:8080/webSocketProject/chat");
+		    var entryCase=false;
+		    
+			websocket.onmessage = function processMessage(message) 
+			{
+				var msg=message.data;
+				if("<!DOCTYPE"== msg.substring(0,9))
+				{   
+					var message=msg.split("");
+					var link = msg.search("link");   
+					var count=link+11;
+					while(true){
+						if(message[count]=="\""){
+							break;
+						}
+						count++;
+					}
+					var str=msg.substring(link+11,count); 
+
+					console.log(str);
+					
+					if("operatorPageShow" == str)
+					{
+						loginPage.className="loginPageHide";
+						opPage.className=str; 
+						signupPage.className="signupPageHide"; 
+						entryCase=true;
+					} 
+				}
+				else if(msg=="+")
+				{
+					alert("kayit islemi basariyla sonuclandi !!");
+					window.location.reload(true);
+					console.log("kayit OK");	
+				} 
+				else if(entryCase)
+				{
+					addToMessageBoxFromTarget(msg); 
+				}
+			};
+			 	
+			function passion()
+			{
+				if(( userLoginPassword.value=="" && userLoginName.value=="" ))  
+				{
+					 alert("Please enter your password or username!");
+				} 
+				else if(( userLoginPassword.value=="" && userLoginName.value!="" ))  
+				{ 
+					 alert("Please enter your password !");
+				} 
+				else if(( userLoginPassword.value!="" && userLoginName.value=="" ))  
+				{
+					 alert("Please enter your username!");
+				} 
+				else
+				{	 
+					var nameAndpass=userLoginName.value+" "+userLoginPassword.value; 
+					websocket.send(nameAndpass);
+				} 	
+			}
+
+			function signup()
+			{
+				loginPage.className="loginPageHide";
+				opPage.className="operatorPageHide"; 
+				signupPage.className="signupPageShow";
+			}
+			
+			function subscribe()
+			{
+				var signupNameandPass="*"+" "+SignupName.value+" "+SignupPass.value+" "+SignupConfirmPass.value; 	
+				websocket.send(signupNameandPass); 
+			}
+				
+			function addToMessageBoxFromTarget(message){
+				var para = document.createElement("P");
+				var text, count, lastCount;
+				
+				var max = 50;
+				console.log("message length: "+message.length);
+				if (message.length > max) {
+		
+					for (count = 0; count < message.length; count += max) {
+						lastCount = count + max;
+						if (lastCount > message.length)
+							lastCount = message.length;
+						text = document.createTextNode(message.substring(count, lastCount));
+						para.appendChild(text);
+						para.appendChild(document.createElement("BR")); 
+					}
+				} else {
+					text = document.createTextNode(message);
+					para.appendChild(text);
+				}
+  
+				var div = document.createElement("DIV");
+				div.className = "from-them";
+				div.appendChild(para);
+				sendMessageTextDisplay.appendChild(div); // section message
+			   	var divClear = document.createElement("DIV");
+				divClear.className = "clear";
+				sendMessageTextDisplay.appendChild(divClear); // section newLine
+			} 
+				
+			function addToMessageBox() {
+		 		
+				var message =userLoginName.value+" : "+sendMessageTextArea.value;
+			    
+				websocket.send(sendMessageTextArea.value);
+			    
+				var para = document.createElement("P");
+				var text, count, lastCount;
+				var localId = "MessageMe" + (new Date().getTime());
+				
+				var max = 50;
+				console.log("message length: "+message.length);
+				if (message.length > max) {
+		
+					for (count = 0; count < message.length; count += max) {
+						lastCount = count + max;
+						if (lastCount > message.length)
+							lastCount = message.length;
+						text = document.createTextNode(message.substring(count, lastCount));
+						para.appendChild(text);
+						para.appendChild(document.createElement("BR")); 
+					}
+				} else {
+					text = document.createTextNode(message);
+					para.appendChild(text);
+				}
+		
+				var div = document.createElement("DIV");
+				div.className = "from-me";
+				div.id = localId;
+				div.appendChild(para);
+				sendMessageTextDisplay.appendChild(div); // section message
+				var divClear = document.createElement("DIV");
+				divClear.className = "clear";
+				sendMessageTextDisplay.appendChild(divClear); // section space  
+				sendMessageTextArea.value=""; 
+			}
+			
+			function sendMessage() { 
+			    websocket.send(messageText.value);
+			    messageText.value = ""; 
+
+			}
+
+</script>
+		 
+<div id="opPage"> 
+	<div id="opPageHeader" class="pageHeader2">
+		<div id="logo1">
+				<img src="img/ktu.png" alt="MGP" />
+		</div> 
+		<h1  class="pageHeaderTextH1Client">Computer Network Programming</h1>
+		 
+	</div>
+	<div id="opPageContainer"> 
+ 
+		<div id="opPageMessageBook">
+			<div id="opPageMessageBookHeader"  class="pageHeader"> 
+			</div>
+			<div id="messageBookContent"
+				style="background-color: #CCCCFF; overflow-y: scroll; overflow-x: hidden">
+				<section id="sendMessageTextDisplay">
+					<div id="clear" class="clear"></div>
+				</section>
+			</div>
+
+			<div id="messageSendContent">
+				<textarea id="sendMessageTextArea" rows="3" cols="50"> </textarea>
+				<input type="button" value="Send" id="btnMessageSend" onclick="addToMessageBox()"></input>
+			</div>
+		</div> 
+	</div>
+</div>
+
+<div id="loginPage">  
+		<div id="loginPageHeader" class="pageHeader"> 
+			<div id="logo"><img src="img/ktu.png"/></div>
+		</div>
+		<div id="loginPageContainer">
+			<div id="loginContent">
+				<div id="formContent">
+					<form id="loginForm" method="post">
+						<label class="loginLabel" style="font-family: Arial">Username:</label> 
+						<input type="text" name="userName" id="userLoginName" class="loginInputText" /> 
+						<label class="loginLabel" style="font-family: Arial">Password:</label> 
+						<input type="password" name="userPassword" id="userLoginPassword" class="loginInputText" /> 
+						<input type="button" value="Log in" id="loginButton" onclick="passion()"></input> 
+						<input type="button" value="Sign up" id="loginButton" onclick="signup()"></input>
+					</form>
+				</div>
+			</div>
+		</div>
+</div>
+<div id="signupPage">
+
+		<div id="loginPageHeader" class="pageHeader">
+			<div id="logo"><img src="img/ktu.png" /></div> 
+		</div>
+
+		<div id="loginPageContainer">
+			<div id="loginContent">
+				<div id="formContent">
+					<form id="loginForm" method="post">
+						<label class="loginLabel" style="font-family: Arial">Username:</label> 
+						<input type="text" name="userName" id="SignupName" class="loginInputText" />
+						<label class="loginLabel" style="font-family: Arial">Password :</label> 
+						<input type="password" name="userPassword" id="SignupPass" class="loginInputText" /> 
+						<label class="loginLabel" style="font-family: Arial">Confirm Password :</label> 
+						<input type="password" name="userConfirmPassword" id="SignupConfirmPass" class="loginInputText" /> 
+						<input type="button" value="Subscribe" id="loginButton" onclick="subscribe()"></input>
+
+					</form>
+				</div>
+			</div>
+		</div>
+</div> 
+</body>
+</html>
